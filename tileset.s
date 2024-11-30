@@ -1,2 +1,2 @@
 .segment "CHARS"
-.incbin "tileset.chr"
+.incbin "new_tileset.chr"
