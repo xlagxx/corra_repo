@@ -849,7 +849,7 @@ void main(void)
     title_screen();
 
     game_level=0;
-    game_lives=4;
+    game_lives=5;
 
     while(game_lives&&game_level<LEVELS_ALL)//loop for gameplay
     {
