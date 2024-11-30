@@ -180,9 +180,9 @@ const unsigned char updateListData[]={
 0x28,0x00,TILE_EMPTY,  //the level tile after an item is collected
 0x28,0x00,TILE_EMPTY,
 0x28,0x00,TILE_EMPTY,
-0x20,0x4f,0x10,      //these three entires are used to display
-0x20,0x50,0x10,      //number of the collected items
-0x20,0x51,0x10,
+//0x20,0x4f,0x10,      //these three entires are used to display
+0x20,0x52,0x10,      //number of the collected items
+0x20,0x53,0x10,
 NT_UPD_EOF
 };
 
@@ -190,10 +190,10 @@ NT_UPD_EOF
 //a nametable string with the game stats, created in NES Screen Tool
 //and copy/pasted here with Shift+C
 
-const unsigned char statsStr[27]={
-  0x2c,0x25,0x36,0x25,0x2c,0x1a,0x00,0x00,0x27,
-  0x25,0x2d,0x33,0x1a,0x00,0x00,0x00,0x0f,0x00,
-  0x00,0x00,0x00,0x2c,0x29,0x36,0x25,0x33,0x1a
+const unsigned char statsStr[29]={
+  0x2e,0x29,0x36,0x25,0x2c,0x1a,0x00,0x00,
+  0x26,0x2f,0x32,0x2d,0x29,0x27,0x21,0x33,0x1a,0x00,0x00,0x0f,0x00,0x00,0x00,
+  0x36,0x29,0x24,0x21,0x33,0x1a
 };
 
 
@@ -488,8 +488,8 @@ void game_loop(void)
   vram_adr(NAMETABLE_A);
   vram_unrle(levelList[i]);          //unpack level nametable
 
-  vram_adr(NAMETABLE_A+0x0042);
-  vram_write((unsigned char*)statsStr,27);   //add game stats string
+  vram_adr(NAMETABLE_A+0x0041);
+  vram_write((unsigned char*)statsStr,29);   //add game stats string
 
   pal_bg(levelList[i+1]);             //set up background palette
   pal_spr(palGameSpr);               //set up sprites palette
@@ -555,9 +555,9 @@ void game_loop(void)
 
   //put constant game stats numbers, that aren't updated during level
 
-  put_num(NAMETABLE_A+0x0048,game_level+1,1);
-  put_num(NAMETABLE_A+0x0053,items_count,3);
-  put_num(NAMETABLE_A+0x005d,game_lives-1,1);
+  put_num(NAMETABLE_A+0x0047,game_level+1,1);
+  put_num(NAMETABLE_A+0x0055,items_count,2);
+  put_num(NAMETABLE_A+0x005e,game_lives-1,1);
 
   //enable display
 
@@ -757,9 +757,9 @@ void game_loop(void)
 
               //update number of collected items in the game stats
 
-              update_list[14]=0x10+items_collected/100;
-              update_list[17]=0x10+items_collected/10%10;
-              update_list[20]=0x10+items_collected%10;
+              //update_list[14]=0x10+items_collected/100;
+              update_list[14]=0x10+items_collected/10%10;
+              update_list[17]=0x10+items_collected%10;
             }
           }
         }
