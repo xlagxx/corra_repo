@@ -13,7 +13,7 @@
 //#link "sounds.s"
 
 // CHR data
-//#resource "tileset.chr"
+//#resource "new_tileset.chr"
 //#link "tileset.s"
 
 //include nametables for all the screens such as title or game over
